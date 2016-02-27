@@ -37,7 +37,7 @@ function onDocumentMouseDown( event )
 	if ( intersects.length > 0 )
 	{
 		console.log("Hit right @ " + toString( intersects[0].point ) );
-		window.open("http://localhost:8888/torre/examples/torre.html")
+		window.open("../../torre/examples/torre.html")
 		// change the color of the closest face.
 		//intersects[0].object.callback();
 		intersects[ 0 ].face.color.setRGB( 0.8 * Math.random() + 0.2, 0, 0 ); 
