@@ -124,6 +124,12 @@
 	// viewer.addPointCloud("../resources/pointclouds/walls_outside/cloud.js");
 	// viewer.addPointCloud("../resources/pointclouds/castleEast/cloud.js");
 	// viewer.addPointCloud("../resources/pointclouds/castleWest/cloud.js");
+	viewer.addPointCloud("../../resources_rest/door/cloud.js");
+	viewer.addPointCloud("../../resources_rest/door2/cloud.js");
+	viewer.addPointCloud("../../resources_rest/walls_outside/cloud.js");
+	viewer.addPointCloud("../../resources_rest/castleEast/cloud.js");
+	viewer.addPointCloud("../../resources_rest/castleWest/cloud.js");
+
 
 
 
@@ -183,14 +189,27 @@
 	    plane2.scale.y = 0.160;
 	    plane2.scale.z= 0.14; 
 
+
 		plane_hs = new THREE.Mesh(new THREE.PlaneGeometry(961, 870),img_hs);
 		plane_hs.overdraw = true;
 		plane_hs.position.x = 52;
 		plane_hs.position.y = 80;
 		plane_hs.position.z = 80;
+		var axis = new THREE.Vector3(0,plane_hs.position.y,0);
 		plane_hs.scale.x = 0.05;
 		plane_hs.scale.y = 0.05;
 		plane_hs.scale.z = 0.05;
+		plane_hs.rotateOnAxis(axis,viewer.camera.rotation.y);
+		// rad += radIncrement;
+	 //    plane_hs.rotation.y = viewer.camera.rotation.y;
+	    
+
+
+	    //declared once at the top of your code
+//tilted a bit on x and y - feel free to plug your different axis here
+//in your update/draw function
+
+
 
 
 		viewer.scenePointCloud.add(hotspots);

@@ -76,6 +76,9 @@ function onMouseMove( event ) {
 		intersects[ 0 ].object.material.opacity=[0.3]; 
 		intersects[ 0 ].object.geometry.colorsNeedUpdate = true;
 		plane_hs.visible=true
+		plane_hs.rotation.y = viewer.camera.rotation.y;
+		console.log(viewer.camera.rotation.y);
+		
 	}
 	else {
 		cube.material.color.setRGB( 1,0,1); 
