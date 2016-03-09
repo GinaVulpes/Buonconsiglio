@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Castle</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Description" lang="en" content="Potree representation">
+		<meta name="author" content="autore">
+		<meta name="robots" content="index, follow">
+
+		<!-- icons -->
+		<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+		<link rel="shortcut icon" href="favicon.ico">
+
+		<!-- Bootstrap Core CSS file -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+		<!-- Override CSS file - add your own CSS rules -->
+		<link rel="stylesheet" href="assets/css/styles.css">
+
+		<!-- Conditional comment containing JS files for IE6 - 8 -->
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+
+		<!-- Potree css -->
+
+		<link rel="stylesheet" type="text/css" href="assets/potree/build/potree/potree.css">
+		<link rel="stylesheet" type="text/css" href="assets/potree/libs/jquery-ui-1.11.4/jquery-ui.css">
+		<link rel="stylesheet" href="assets/potree/libs/openlayers3/ol.css" type="text/css">
+
+		<![endif]-->
+	</head>
+	<body>
+
+		<!-- Navigation -->
+	    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+			<div class="container-fluid">
+
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">HOME</a>
+				</div>
+				<!-- /.navbar-header -->
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="#">About</a></li>
+
+						<li><a href="castle.html">Castle</a></li>
+						<!--<li><a href="#">Ciclo dei mesi</a></li>-->
+						<li class="dropdown">
+						      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ciclo di mesi <span class="caret"></span></a>
+						      <ul class="dropdown-menu">
+						      <li><a href="torre.html">Stanza</a></li>
+						      <li role="separator" class="divider"></li>
+						      	<li><a href="january.html">January</a></li>
+						        <li><a href="#">February </a></li>
+						        <li><a href="#">April</a></li>
+
+						        </ul>
+						      </li>
+						<li><a href="#">General Info</a></li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+		<!-- /.navbar -->
+
+		<!-- Page Content -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="page-header">
+						<h1>Castello del Buonconsiglio</h1>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- /.row -->
+
+			<div class="row">
+				<div class="col-sm-7">
+
+					<!-- Insert Script here -->
+
+					<!-- Potree Js Libraries -->
+
+					<script src="assets/potree/libs/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+					<script src="assets/potree/libs/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+					<script src="assets/potree/libs/three.js/build/three.js"></script>
+					<script src="assets/potree/libs/other/stats.min.js"></script>
+					<script src="assets/potree/libs/other/BinaryHeap.js"></script>
+					<script src="assets/potree/libs/tween/tween.min.js"></script>
+					<script src="assets/potree/libs/d3/d3.js"></script>
+					<script src="assets/potree/libs/proj4/proj4.js"></script>
+					<script src="assets/potree/libs/openlayers3/ol.js"></script>
+
+					<script src="assets/potree/build/potree/potree.js"></script>
+					<script src="assets/potree/raycast.js"></script>
+
+					<!-- script -->
+
+					<div class="margin-b-2" style="position: absolute; width: 80%; height: 100%; left: 10px; top: 10px; border: 8px solid red;">
+
+							<div id="potree_render_area">
+
+								<img class="potree_menu_toggle" src="assets/potree/resources/icons/menu_button.svg" onclick="viewer.toggleSidebar()" />
+
+								<!--<img id="potree_map_toggle" src="assets/potree/resources/icons/map_icon.png" onclick="viewer.toggleMap()" style="display: none"/>-->
+
+								<div id="potree_map" class="mapBox" style="position: absolute; left: 50px; top: 50px; width: 400px; height: 400px; display: none">
+									<div id="potree_map_header" style="position: absolute; width: 100%; height: 25px; top: 0px; background-color: rgba(0,0,0,0.5); z-index: 1000; border-top-left-radius: 3px; border-top-right-radius: 3px;">
+									</div>
+									<div id="potree_map_content" class="map" style="position: absolute; z-index: 100; top: 25px; width: 100%; height: calc(100% - 25px); border: 2px solid rgba(0,0,0,0.5); box-sizing: border-box;"></div>
+								</div>
+
+								<!-- HEADING -->
+
+								<div id="potree_description" class="potree_info_text"></div>
+							</div>
+
+							<div id="potree_sidebar_container"> </div>
+					    </div>
+
+						<script>
+
+
+
+							var onPointCloudLoaded = function(event){
+								// do stuff here that should be executed whenever a point cloud has been loaded.
+								// event.pointcloud returns the point cloud object
+								console.log("a point cloud has been loaded");
+
+					   //  		document.addEventListener('mousemove', onMouseMove, false);
+
+							};
+
+
+							viewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
+								"onPointCloudLoaded": onPointCloudLoaded
+							});
+
+							viewer.setEDLEnabled(false);
+							viewer.setPointSize(3);
+							viewer.setMaterial("RGB");
+							viewer.setFOV(60);
+							viewer.setPointSizing("Fixed");
+							viewer.setQuality("Squares");
+							viewer.setPointBudget(1*1000*1000);
+							//viewer.setOpacity(0.03);
+							//viewer.setMinNodeSize(100);
+
+							// viewer.setDescription("Potree 1.4RC. Use this for testing purposes only! Check <a href='https://twitter.com/m_schuetz' target='_blank'>here</a> for new updates.<br>"
+							// 	+ "Report issues on the <a href='https://github.com/potree/potree' target='_blank'>github repository</a> or <a href='mailto:mschuetz@potree.org' target='_blank'>mschuetz@potree.org</a><br>"
+							//);
+
+						viewer.addPointCloud("assets/potree/resources/pointclouds/castle/cloud.js");
+						viewer.addPointCloud("assets/potree/resources/pointclouds/castleEast/cloud.js");
+						viewer.addPointCloud("assets/potree/resources/pointclouds/castleWest/cloud.js");
+
+
+							viewer.loadGUI();
+
+							var materialImg1 = THREE.ImageUtils.loadTexture('assets/potree/img/castle_ground.png');
+							var img1 = new THREE.MeshBasicMaterial({ map: materialImg1, transparent:true });
+						    //img.map.needsUpdate = true;
+
+						    var materialImg2 = THREE.ImageUtils.loadTexture('assets/potree/img/castle_floor.png');
+							var img2 = new THREE.MeshBasicMaterial({ map: materialImg2, transparent:true });
+
+
+							var materialImg_hs = THREE.ImageUtils.loadTexture('assets/potree/img/heart.png');
+							var img_hs= new THREE.MeshBasicMaterial({ map: materialImg_hs, transparent:true });
+
+
+							hotspots = new THREE.Object3D();
+							planes=new THREE.Object3D();
+							geom = new THREE.BoxGeometry( 13, 13, 13 )
+							mat = new THREE.MeshBasicMaterial({color: 0xFF00FF, transparent: true, opacity: 0})
+
+
+							// var cube//=
+							cube = new THREE.Mesh(geom, mat );
+							cube.position.x = 52;//-922.56;//222.30
+							cube.position.y = 32;//-1213.53;
+							cube.position.z = 80
+
+
+
+							//obj1 = new THREE.Object3D();
+							plane1 = new THREE.Mesh(new THREE.PlaneGeometry(2281, 614),img1);
+							plane1.overdraw = true;
+
+							//obj2 = new THREE.Object3D();
+							plane2 = new THREE.Mesh(new THREE.PlaneGeometry(2281, 614),img2);
+							plane2.overdraw = true;
+
+							plane_hs = new THREE.Mesh(new THREE.PlaneGeometry(961, 870),img_hs);
+							plane_hs.overdraw = true;
+
+
+
+					//plane
+					// var rat = materialImg.image.height / materialImg.image.width;
+					// var plane = new THREE.Mesh(new THREE.PlaneGeometry(10, 10*1.5),img);
+					// plane.overdraw = true;
+
+
+					// plane.rotation.y = (-Math.PI / 2);
+					plane_hs.position.x = 52;
+					plane_hs.position.y = 80;
+					plane_hs.position.z = 80;
+					plane_hs.scale.x = 0.05;
+					plane_hs.scale.y = 0.05;
+					plane_hs.scale.z = 0.05;
+
+
+
+
+
+						plane1.rotation.x = (-Math.PI / 2);
+					    plane1.rotation.z = (-1.15);
+					    plane1.position.x = 25;
+					    plane1.position.y = 3;
+					    plane1.position.z = -48;
+					    // plane1.scale.x = 0.058;
+					    // plane1.scale.y = 0.080;
+					    // plane1.scale.z= 0.07;
+					    plane1.scale.x = 0.116;
+					    plane1.scale.y = 0.160;
+					    plane1.scale.z= 0.14;
+
+					    plane2.rotation.x = (-Math.PI / 2);
+					    plane2.rotation.z = (-1.15);
+					    plane2.position.x = 25;
+					    plane2.position.y = 15;
+					    plane2.position.z = -48;
+					    plane2.scale.x = 0.116;
+					    plane2.scale.y = 0.160;
+					    plane2.scale.z= 0.14;
+
+
+							geom = new THREE.BoxGeometry( 20, 2, 20)
+							mat = new THREE.MeshBasicMaterial({color: 0x0000FF, transparent: true, opacity:0.3})
+							cube2 = new THREE.Mesh(geom, mat);
+							cube2.position.x=0//-922.56;//222.30
+							cube2.position.y = 0//-1213.53;
+
+							viewer.scenePointCloud.add(hotspots);
+							hotspots.add(cube);
+							hotspots.add(cube2);
+
+
+							viewer.scenePointCloud.add(planes);
+							planes.add(plane1);
+							planes.add(plane2);
+							planes.add(plane_hs);
+							plane1.visible=false
+							plane2.visible=false
+							plane_hs.visible=false
+							//addCheckRaster(plane1,plane2)
+							//document.addEventListener('mouseover', onMouseOver, false);
+							document.addEventListener('mousedown', onDocumentMouseDown, false);
+							document.addEventListener('mousemove', onMouseMove, false);
+
+
+						// 	function onMouseOver(evt){
+						// 		var camera = viewer.camera;
+
+						// // calculate mouse position in normalized device coordinates
+						// // (-1 to +1) for both components
+						// var mouse = { x : 0 , y : 0 };
+						// mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+						// mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+						// // update the picking ray with the camera and mouse position
+						// raycaster.setFromCamera( mouse, camera );
+
+						// // create an array containing all objects in the scene with which the ray intersects
+						// var intersects = raycaster.intersectObjects( [cube] );
+
+						// // if there is one (or more) intersections
+						// if ( intersects.length > 0 )
+						// {
+						// 	console.log("Hit @ " + toString( intersects[0].point ) );
+						// 	// change the color of the closest face.
+						// 	intersects[ 0 ].object.material.color.setRGB( 0,1,0);
+						// 	intersects[ 0 ].object.geometry.colorsNeedUpdate = true;
+
+						// }
+						// else {
+						// 	cube.material.color.setRGB( 1,0,0);
+						// 	cube.geometry.colorsNeedUpdate = true;
+						// }
+						// plane.lookAt(camera.position);
+						// 	};
+
+						</script>
+					
+
+
+					<!-- Placeholder -->
+
+					<figure class="margin-b-2">
+						<a target="_blank" href="assets/potree/castle/examples/castle.html"><img class="img-responsive" src="assets/img/castle.png" alt=""></a>
+						<figcaption class="margin-t-h">Click to open in a new window</figcaption>
+					</figure>
+
+					<p class="lead">Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
+
+
+					<!-- Descriptor list -->
+					<!--<dl class="dl-horizontal">-->
+					<!--<h3>
+					  <dt>Test</dt>
+					  <dd>Lorem ipsum dolor sit</dd>
+					  <dt>Test</dt>
+					  <dd>Lorem ipsum dolor sit</dd>
+					</dl>
+
+					</h3>-->
+
+					<!-- Activity descriptor -->
+					<h3>Elements used</h3>
+					<div class="media">
+					  <div class="media-left">
+					    <a href="#">
+					      <img class="media-object" src="assets/img/64.png" alt="...">
+					    </a>
+					  </div>
+					  <div class="media-body">
+					    <h4 class="media-heading">Outer Wall</h4>
+					    Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+					  </div>
+					  </div>
+					  <div class="media">
+					  <div class="media-left">
+					    <a href="#">
+					      <img class="media-object" src="assets/img/64.png" alt="...">
+					    </a>
+					  </div>
+					  <div class="media-body">
+					    <h4 class="media-heading">Facade</h4>
+					    Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+					  </div>
+					</div>
+
+
+
+					<hr>
+
+
+				</div>
+
+
+				<div class="col-sm-5">
+					<!-- Search
+					<div class="well">
+						<h4 class="margin-t-0">Search</h4>
+						<form action="#">
+							<div class="input-group">
+								<label class="sr-only" for="search-form">Search the site</label>
+								<input type="text" class="form-control" id="search-form">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button">
+										<span class="glyphicon glyphicon-search"></span>
+										<span class="sr-only">Search</span>
+									</button>
+								</span>
+							</div>
+						</form>
+					</div>-->
+
+
+
+				        <p><h2>Description</h2>
+				        <p>The castle was originated from a fortified building was erected in the 13th century next to the city's walls. This first building was called Castelvecchio ("Old Castle"), and was the seat of the Bishopric of Trent from the 13th century onwards to the end of the 18th century. The castle is composed of a series of buildings of different eras, enclosed by a circle of walls in a slightly elevated position above the town.The, as called, Castelvecchio is the oldest and most dominant building of the entire housing development. The Magno Palazzo is the sixteenth expansion in the forms of the Italian Renaissance, wanted by the Prince Bishop and Cardinal Bernardo Clesio (1485-1539), the third part, in the southern end of the complex is the known Eagle tower, which preserves the famous Cycle of the Months, one of the most fascinating pictorial cycles of profane the late Middle Ages</p>
+
+				       <p>Bishop George of Liechtenstein was the first to enlarge the castle, in the late 14th century, turning it into a well-styled residence. The Castelvecchio was further modified by Johannes Hinderbach, who had the double loggiato and the Gothic entrance gate built. In the first decades of the 16th century, Bishop Bernardo Clesio had a new residence, called Palazzo Magno ("Grand Palace") built in Renaissance style alongside the old castle. The last great addition was the so-called Giunta Albertiana, from the name of Bishop Francesco Alberti Poja (1686), with which the Castelvecchio and the Palazzo Magno were united </p>
+
+				        <p>The castle remained the seat of the Prince-Bishops until 1803. Used by the Austrians as military barracks and, later, as a jail, it decayed. In the 1920s, when Trento was returned to Italy, it became seat of a National Museum and was restored. Since 1992 it is home to the Provincial Gallery of Art.</p>
+
+				        <p>According to legend, it was connected by a secret tunnel to the city's cathedral, which allowed the prince-bishops to move unseen between them.</p>
+				        <p><h5>Fonte <italic>wikipedia.org</italic></h5></p>
+				         </p>
+				        </p>
+				        </div>
+
+				     </div>
+
+				<!--	<!-- list group --*>
+					<div class="list-group margin-b-3">
+					    <a href="#" class="active list-group-item">Category 1</a>
+					    <a href="#" class="list-group-item">Category 2</a>
+					    <a href="#" class="list-group-item">Category 3</a>
+					</div>
+
+                	<!-- Panel --*>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">Sidebar panel widget</h4>
+						</div>
+						<div class="panel-body">
+							<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+						</div>
+					</div>
+
+					<!-- Panel --*>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">Sidebar panel widget</h4>
+						</div>
+						<div class="panel-body">
+							<p>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+						</div>
+					</div>
+
+				</div>
+			</div>-->
+			<!-- /.row -->
+
+		<!-- /.container-fluid -->
+
+		<!-- JQuery scripts -->
+	    <script src="assets/js/jquery-1.11.2.min.js"></script>
+
+		<!-- Bootstrap Core scripts -->
+		<script src="assets/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Ciclo dei mesi</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Description" lang="en" content="Potree representation">
+		<meta name="author" content="autore">
+		<meta name="robots" content="index, follow">
+
+		<!-- icons -->
+		<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+		<link rel="shortcut icon" href="favicon.ico">
+
+		<!-- Bootstrap Core CSS file -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+		<!-- Override CSS file - add your own CSS rules -->
+		<link rel="stylesheet" href="assets/css/styles.css">
+		
+		<!--Potree css -->
+		
+			<link rel="stylesheet" type="text/css" href="assets/potree/torre_aquila/build/potree/potree.css">
+			<link rel="stylesheet" type="text/css" href="assets/potree/torre_aquila/libs/jquery-ui-1.11.4/jquery-ui.css">
+			<link rel="stylesheet" href="assets/potree/torre_aquila/libs/openlayers3/ol.css" type="text/css">
+
+		<!-- Conditional comment containing JS files for IE6 - 8 -->
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+		<!-- Navigation -->
+		
+	    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+			<div class="container-fluid">
+
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">HOME</a>
+				</div>
+				
+				<!-- /.navbar-header -->
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="#">About</a></li>
+						
+						<li><a href="castle.html">Castle</a></li>
+						<!--<li><a href="#">Ciclo dei mesi</a></li>-->
+						<li class="dropdown">
+						        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ciclo di mesi <span class="caret"></span></a>
+						        <ul class="dropdown-menu">
+						        <li><a href="torre.html">Stanza</a></li>
+						        <li role="separator" class="divider"></li>
+						        	<li><a href="january.html">January</a></li>
+						          <li><a href="#">February </a></li>
+						          <li><a href="#">April</a></li>
+						          
+						         
+						        </ul>
+						      </li>
+						<li><a href="#">General Info</a></li>      
+					</ul>
+				</div>
+				
+				<!-- /.navbar-collapse -->
+				
+			</div>
+			
+			<!-- /.container-fluid -->
+			
+		</nav>
+		
+	
+		<!-- /.navbar -->
+
+
+
+
+
+
+
+
+		<!-- Page Content -->
+		<div class="container-fluid">
+			
+		<!-- header_row -->
+		
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="page-header">
+						<h1>Ciclo dei Mesi</h1>
+					</div>
+				</div>
+			</div>
+		
+		
+
+			<!-- /. header_row -->
+
+			<div class="row">
+				
+				<!-- 1st column 7 -->
+				
+				<div class="col-sm-7"> 
+				
+					
+
+						<!-- Insert Script here -->
+						
+						<!--<script src="assets/potree/torre_aquila/libs/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+						<script src="assets/potree/torre_aquila/libs/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+						<script src="assets/potree/torre_aquila/libs/three.js/build/three.js"></script>
+						<script src="assets/potree/torre_aquila/libs/other/stats.min.js"></script>
+						<script src="assets/potree/torre_aquila/libs/other/BinaryHeap.js"></script>
+						<script src="assets/potree/torre_aquila/libs/tween/tween.min.js"></script>
+						<script src="assets/potree/torre_aquila/libs/d3/d3.js"></script>
+						<script src="assets/potree/torre_aquila/libs/proj4/proj4.js"></script>
+						<script src="assets/potree/torre_aquila/libs/openlayers3/ol.js"></script>
+						
+						<script src="assets/potree/torre_aquila/build/potree/potree.js"></script>
+						
+						
+						
+						<div class="potree_container" style="position: absolute; width: 90%; height: 100%; bottom: 50px;left: 10px; top: 10px; border: 10px solid #333;">
+						
+							<div id="potree_render_area">
+								
+								<img class="potree_menu_toggle" src="assets/potree/torre_aquila/resources/icons/menu_button.svg" onclick="viewer.toggleSidebar()" />
+								<img id="potree_map_toggle" src="assets/potree/torre_aquila/resources/icons/map_icon.png" onclick="viewer.toggleMap()" style="display: none"/>
+								
+								<div id="potree_map" class="mapBox" style="position: absolute; left: 50px; top: 50px; width: 400px; height: 400px; display: none">
+								
+										<div id="potree_map_header" style="position: absolute; width: 100%; height: 25px; top: 0px; background-color: rgba(0,0,0,0.5); z-index: 1000; border-top-left-radius: 3px; border-top-right-radius: 3px;">
+										</div>
+										
+										<div id="potree_map_content" class="map" style="position: absolute; z-index: 100; top: 25px; width: 100%; height: calc(100% - 25px); border: 2px solid rgba(0,0,0,0.5); box-sizing: border-box;">
+										</div>
+									
+								
+								<script>
+											
+									var onPointCloudLoaded = function(event){
+										// do stuff here that should be executed whenever a point cloud has been loaded.
+										// event.pointcloud returns the point cloud object
+										
+										console.log("a point cloud has been loaded");
+									}; 
+								
+									viewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
+										"onPointCloudLoaded": onPointCloudLoaded
+									});
+									
+									viewer.setEDLEnabled(false);
+									viewer.setPointSize(3);
+									viewer.setMaterial("RGB");
+									viewer.setFOV(60);
+									viewer.setPointSizing("Fixed");
+									viewer.setQuality("Squares");
+									viewer.setPointBudget(1*1000*1000);
+									//viewer.setOpacity(0.03);
+									//viewer.setMinNodeSize(100);
+									
+									
+									
+								viewer.addPointCloud("assets/potree/torre_aquila/resources/pointclouds/torre/cloud.js");
+									
+									viewer.loadGUI();
+									
+								</script>
+								
+								
+								
+								
+								
+							
+							
+						
+						
+						
+							</div>							
+							
+						</div>
+						
+					</div>-->
+				
+					
+					<!-- Placeholder + text -->
+				
+				
+				<figure class="margin-b-2">
+						<a target="_blank" href="assets/potree/torre_aquila/examples/torre.html"><img class="img-responsive" src="assets/img/torre.png" alt=""></a>
+						<figcaption class="margin-t-h">Click to open in a new window</figcaption>
+					</figure>
+					
+					<!-- /. Placeholder -->
+
+<div>
+					<br>
+					<hr>
+					<p class="lead">Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
+					<br>
+					
+					<p>Nella sezione qui sotto sarà possibile visualizzare i metadati relativi all'acquisizione del modello 3D </p>
+					<br>
+					
+				
+		</div>		  
+					 <!-- /. text -->
+					  
+					  
+					  <!-- Table basic -->
+					  
+					<table class="table table-hover">
+					 <tr>
+					     <td>Descriptor</td>
+					     <td>Value</td> 
+					     
+					   </tr>
+					   <tr>
+					     <td>Camera Used</td>
+					     <td>Nikon D3x</td> 
+					   </tr>
+					   <tr>
+					     <td>Technique used</td>
+					     <td>Photogrammetry</td> 
+					   </tr>
+					   
+					</table>
+				
+				<!--	<table class="table table-hover">
+					    <thead>
+					        <th>Descriptor</th>
+					        <th>Value</th>
+					    </thead>
+					    
+					    <tbody>
+					        <tr data-toggle="collapse" data-target="#accordion" class="clickable">
+					            <td>Ciclo dei Mesi</td>
+					            <td>Castello del Buonconsiglio</td>
+					          
+					        </tr>
+					        <tr>
+					            <td colspan="2">
+					                <div id="accordion" class="collapse">Hidden by default</div>
+					                <td>Ciclo dei Mesi</td>
+					                <td>Castello del Buonconsiglio</td>
+					            </td>
+					        </tr>
+					    </tbody>
+					</table>
+					
+					
+					-->
+						
+				<!-- /.1st column -->
+						
+				</div>	
+				
+				
+									
+			
+				<!-- 2nd column -->
+				
+				<div class="col-sm-4">
+				        <p><h2>Description</h2>
+				        <p>Il Ciclo dei Mesi è un gruppo di affreschi nella Torre dell'Aquila nel castello del Buonconsiglio di Trento, dipinti dal maestro Venceslao (documentato in città nel 1397). Risalgono alla fine del XIV secolo-inizio del XV e sono il migliore esempio di gotico internazionale in Trentino e uno dei più significativi dell'Italia settentrionale.</p>
+				        <p>Il ciclo si articola oggi in undici diversi riquadri, poiché il mese di Marzo era stato dipinto su un supporto di legno ed è andato perduto durante un incendio. L'insieme è strutturato come una loggia architravata sostenuta da esili colonnine tortili, dalla quale si vedono, come in un ipotetico affaccio che sfonda la parete, le varie occupazioni signorili e contadine di ciascun mese. Tutti gli sfondi e i dettagli architettonici sono raccordati tra scena e scena, come in un panorama unitario.</p>
+				        <p>Le scene, ricchissime di particolari tratti dall'osservazione della vita reale (magari filtrate dalle illustrazioni dei Tacuina Sanitatis), mostrano la vita dei nobili, le attività dell'agricoltura e della pastorizia, con un continuo e pacato intreccio tra mondo cavalleresco e mondo quotidiano. Poche sono invece le concessioni al grottesco e al macabro, che caratterizzavano invece altre zone italiane ed europee.</p>
+				        <p>Viene prestata molta attenzione al succedersi delle stagioni: il paesaggio invernale spoglio e imbiancato dalla neve diventa rigoglioso di vegetazione in primavera, i raccolti estivi segnano l'apice dell'attività agricola, mentre gli alberi nel mese di novembre sono circondati dalle foglie secche cadute sul terreno. La cura dei particolari ritorna nella descrizione delle vesti, l'abbigliamento infatti permette di riconoscere i caratteri tipici della moda del tempo: per i nobili, occupati in svaghi e tornei, gli abiti sono ricchi di colori, mentre molto più semplici e pratici sono quelli delle classi umili, rappresentate sempre al lavoro. Si può vedere la minuziosità dei particolari anche nei cambiamenti delle stagioni.</p>
+				       <p>In ogni affresco è presente la figura del sole con accanto il segno zodiacale corrispondente ad ogni mese.</p>
+				       <p>Modelli iconografici del ciclo sono, oltre al già citato Tacuinum sanitatis, il Livre de la chasse di Gaston Phoebus e le Très riches heures du Duc de Berry.</p>
+				       <br>
+				       <p><h5>Fonte <italic>wikipedia.org</italic></h5></p>
+				        </p>
+				    
+				<!-- /.2nd column -->
+				
+				</div>
+
+
+
+			<!-- /.row -->
+			
+			</div>
+
+		<!-- /.container-fluid -->
+		
+		</div>
+		
+		<!-- JQuery scripts -->
+	    <script src="assets/js/jquery-1.11.2.min.js"></script>
+
+		<!-- Bootstrap Core scripts -->
+		<script src="assets/js/bootstrap.min.js"></script>
+  </body>
+</html>
+
