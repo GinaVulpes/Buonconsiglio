@@ -135,7 +135,7 @@
 						
 						
 						
-					<div class="potree_container" style="position: absolute; width: 90%; height: 150%; left: 10px; top: 10px; clear: both;">
+					<div class="potree_container" style="position: absolute; width: 90%; height: 80%; left: 10px; top: 10px; clear: both;">
 						
 							<div id="potree_render_area">
 								
@@ -202,12 +202,12 @@
 					
 					<!-- /. Placeholder -->
 
-				<div style="position: relative; top: 600px;">
+				<div style="position: relative; top: 700px;">
 					<br>
 					<hr>
 					<p class="lead">Lorem ipsum dolor sit amet consect etuer adipi scing elit sed diam nonummy nibh euismod tinunt ut laoreet dolore magna aliquam erat volut. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
 					<br>
-					<p>Nella sezione qui sotto sarà possibile visualizzare i metadati relativi all'acquisizione del modello 3D </p>
+					<p>Nella sezione qui sotto è possibile visualizzare i metadati relativi all'acquisizione del modello 3D </p>
 					<br>
 					
 				
@@ -218,47 +218,105 @@
 					  
 					  <!-- Table basic -->
 					  
-					<table class="table table-hover" style="position: relative; top: 600px; clear: both;" >
+					  
+					  <!-- Table Script jquery -->
+					  <script type="text/javascript">
+					              $(document).ready(function() {
+					      	         $("#HiddenRowsNotice").html("<tr><td colspan='2'> <a href='#'>Click to show all elements </a></td></tr>");
+					      	         $("#ShowHide").html("<tr><td colspan='2'><a href='#'>Mostra/Nascondi</a></td></tr>"); 
+					      	        $("#HiddenRows").hide();
+					  
+					      	        $('#ShowHide,#HiddenRowsNotice').click( function() {
+					      	            $('#HiddenRows').toggle();	
+					      		        $('#HiddenRowsNotice').toggle();
+					      	        });
+					              });
+					          </script>
+					  
+					  
+					<table class="table table-hover" style="position: relative; top: 700px; clear: both;" >
+					<tbody id="ShowHide" style="color: black;"></tbody>
 					 <tr>
 					     <td>Descriptor</td>
 					     <td>Value</td> 
 					     
 					   </tr>
 					   <tr>
-					     <td>Camera Used</td>
-					     <td>Nikon D3x</td> 
+					     <td>AP: Object Part</td>
+					     <td>Torre dell'Aquila</td> 
 					   </tr>
 					   <tr>
-					     <td>Technique used</td>
+					     <td>AA: Technique used</td>
 					     <td>Photogrammetry</td> 
 					   </tr>
-					   
+					   <tbody id="HiddenRowsNotice"></tbody>
+					   <tbody id="HiddenRows">
+					   <tr>
+					     <td>AA: Actor Operators</td>
+					     <td>Diego Belido</td> 
+					   </tr>
+					   <tr>
+					     <td>AA: Starting Time</td>
+					     <td>10:30</td> 
+					   </tr>
+					   <tr>
+					     <td>AA: Ending Time</td>
+					     <td>14:00</td> 
+					   </tr>
+					   <tr>
+					     <td>OAC: Baseline</td>
+					     <td>0.5</td> 
+					   </tr>
+					   <tr>
+					     <td>OAC: Distance from the Object</td>
+					     <td>2 meters</td> 
+					   </tr>
+					   <tr>
+					     <td>ESP: Camera</td>
+					     <td>Nikon D3X</td> 
+					   </tr>
+					   <tr>
+					     <td>ESP: Platform</td>
+					     <td>Tripod Manfrotto</td> 
+					   </tr>
+					   <tr>
+					     <td>OAC: Camera Calibration</td>
+					     <td>Self Calibration</td> 
+					   </tr>
+					   <tr>
+					     <td>ESP: Aperture</td>
+					     <td>F/16</td> 
+					   </tr>
+					   <tr>
+					     <td>ESP: Focus</td>
+					     <td>Manual</td> 
+					   </tr>
+					   <tr>
+					     <td>ESP: Focal Lenght</td>
+					     <td>28mm</td> 
+					   </tr>
+					   <tr>
+					     <td>ESP: White Balance</td>
+					     <td>Predefined Manually - Grey pattern and color checker</td> 
+					   </tr>
+					   </tbody>
 					</table>
 				
-				<!--	<table class="table table-hover">
-					    <thead>
-					        <th>Descriptor</th>
-					        <th>Value</th>
-					    </thead>
-					    
-					    <tbody>
-					        <tr data-toggle="collapse" data-target="#accordion" class="clickable">
-					            <td>Ciclo dei Mesi</td>
-					            <td>Castello del Buonconsiglio</td>
-					          
-					        </tr>
-					        <tr>
-					            <td colspan="2">
-					                <div id="accordion" class="collapse">Hidden by default</div>
-					                <td>Ciclo dei Mesi</td>
-					                <td>Castello del Buonconsiglio</td>
-					            </td>
-					        </tr>
-					    </tbody>
-					</table>
+				
+				
+				        				        				  
+				       
+			
+				
+				
+				
+				
+				
+				
+				
 					
 					
-					-->
+					
 					</div>
 					
 						
