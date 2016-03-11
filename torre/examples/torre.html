@@ -101,15 +101,12 @@
 		viewer.setEDLEnabled(false);
 		viewer.setPointSize(3);
 		viewer.setMaterial("RGB");
-		viewer.setFOV(40);
+		viewer.setFOV(60);
 		viewer.setPointSizing("Fixed");
 		viewer.setQuality("Squares");
 		viewer.setPointBudget(1*1000*1000);
-    //viewer.showSkybox = true; //true for the sky background
-    //viewer.setShowBoundingBox(true);
-
-    //viewer.camera.position.set(-304, 372, 318);
-
+    	//viewer.showSkybox = true; //true for the sky background
+    	//viewer.setShowBoundingBox(true);
 		//viewer.setOpacity(0.03);
 		//viewer.setMinNodeSize(100);
 
@@ -121,57 +118,201 @@
 
 		viewer.loadGUI();
 
-		hotspots = new THREE.Object3D();
+		planes = new THREE.Object3D(); 	  // create empty container to put the frescoes' planes
 
-    	var materialImg_hs = THREE.ImageUtils.loadTexture('../gennaio.png');
-		var img_hs= new THREE.MeshBasicMaterial({ map: materialImg_hs, transparent:true });
+		hotspots = new THREE.Object3D(); // create empty container to put the POIs
 
-		// geom = new THREE.BoxGeometry( 13, 13, 13 )
-		// mat = new THREE.MeshBasicMaterial({color: 0xFF00FF, transparent: true, opacity: 0})
-		// cube = new THREE.Mesh(geom, mat );
-		plane = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 3.2),new THREE.MeshBasicMaterial({color: 0xFF00FF, transparent: true, opacity: 0}));
-		plane.position.x = 3.5;
-		plane.position.y = 4.6;
-		plane.position.z = -1.6 ;
-	    plane.scale.x = 1;
-	    plane.scale.y = 1;
-	    plane.scale.z= 1;
-	    plane.rotation.x = (Math.PI / 60);
-	    plane.rotation.y = (-Math.PI / 2);
-	    plane.visible=false
+		// Specify the colour and opacity properties of the planes (to ensure homogeneity)
+		plane_colour= 0xFFE4C4;// white:0xFFFFFF; cream:0xFFE4C4; mint:0x98FB98; gold:0xDAA520; lightpink:0xDDA0DD;
+		plane_opacity=0.3;
+
+		//Specify POIs' opacity
+		poi_opacity=0.8;
 
 
-    // plane2 = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 3.2),new THREE.MeshBasicMaterial({color: 0xff0000, transparent: false}));
-    // plane2.position.x = 3.5;
-		// plane2.position.y = 4.6;
-		// plane2.position.z = -1.6 ;
-    // plane2.scale.x = 1;
-    // plane2.scale.y = 1;
-    // plane2.scale.z= 1;
-    // plane2.rotation.x = (Math.PI / 60);
-    // plane2.rotation.y = (-Math.PI / 2);
+		// ----January ----
+
+		plane_Jan = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 3.2),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_Jan.position.x = 3.6;
+		plane_Jan.position.y = 4.6;
+		plane_Jan.position.z = -1.6 ;
+	    plane_Jan.rotation.x = (Math.PI / 60);
+	    plane_Jan.rotation.y = (-Math.PI / 2);
+	    plane_Jan.visible=false;
+	    plane_Jan.userData.name="Jan"
+
+	    var materialImg_Jan = THREE.ImageUtils.loadTexture('../pois/gennaio.png');
+		var img_Jan= new THREE.MeshBasicMaterial({ map: materialImg_Jan, transparent:true });
+
+	    poi_Jan = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_Jan);
+		poi_Jan .overdraw = true;
+		poi_Jan.position.x = 3.3;
+		poi_Jan.position.y = 3.8;
+		poi_Jan.position.z = -1.5 ;
+		poi_Jan.visible=false
+		poi_Jan.userData.name="Jan"
+		poi_Jan.material.opacity=poi_opacity;
 
 
-    	plane_hs = new THREE.Mesh(new THREE.PlaneGeometry(2, 2),img_hs);
-		plane_hs.overdraw = true;
-		plane_hs.position.x = 2.5;
-		plane_hs.position.y = 3.8;
-		plane_hs.position.z = -1.6 ;
-		var axis = new THREE.Vector3(0,plane_hs.position.y,0);
-		plane_hs.scale.x = 1;
-		plane_hs.scale.y = 1;
-		plane_hs.scale.z = 1;
-		plane_hs.rotateOnAxis(axis,viewer.camera.rotation.y);
-    	plane_hs.visible=false
 
-		viewer.scenePointCloud.add(hotspots);
-		hotspots.add(plane);
-    	hotspots.add(plane_hs);
-    // hotspots.add(plane2);
+		// ----February----
+    	
+		plane_Feb = new THREE.Mesh(new THREE.PlaneGeometry(2.0, 1.8),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_Feb.position.x = 3.6;
+		plane_Feb.position.y = 5.2;
+		plane_Feb.position.z = 0.5 ;
+	    plane_Feb.rotation.x = (Math.PI / 60);
+	    plane_Feb.rotation.y = (-Math.PI / 2);
+	    plane_Feb.visible=false;
+	    plane_Feb.userData.name="Feb"
 
-		//cube.visible=false
+	    var materialImg_Feb = THREE.ImageUtils.loadTexture('../pois/febbraio.png');
+		var img_Feb= new THREE.MeshBasicMaterial({ map: materialImg_Feb, transparent:true });
 
-		//document.addEventListener('mouseover', onMouseOver, false);
+    	poi_Feb = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_Feb);
+		poi_Feb.overdraw = true;
+		poi_Feb.position.x = 3.3;
+		poi_Feb.position.y = 3.8;
+		poi_Feb.position.z = 0.5;
+    	poi_Feb.visible=false;
+		poi_Feb.userData.name="Feb"
+		poi_Feb.material.opacity=poi_opacity;
+
+
+		// ----April----
+		
+		plane_Apr= new THREE.Mesh(new THREE.PlaneGeometry(2, 3.2),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_Apr.position.x = 0.8;
+		plane_Apr.position.y = 4.5;
+		plane_Apr.position.z = 3.1 ;
+	    plane_Apr.rotation.y = (-Math.PI);
+	    plane_Apr.visible=false;
+	    plane_Apr.userData.name="Apr"
+
+	    var materialImg_Apr = THREE.ImageUtils.loadTexture('../pois/aprile.png');
+		var img_Apr= new THREE.MeshBasicMaterial({ map: materialImg_Apr, transparent:true });
+
+    	poi_Apr = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_Apr);
+		poi_Apr.overdraw = true;
+		poi_Apr.position.x = 0.8;
+		poi_Apr.position.y = 3.8;
+		poi_Apr.position.z = 2.8;
+    	poi_Apr.visible=false;
+		poi_Apr.userData.name="Apr"
+		poi_Apr.material.opacity=poi_opacity;
+
+
+		// ----May----
+
+		plane_May= new THREE.Mesh(new THREE.PlaneGeometry(2, 3.2),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_May.position.x = -1.2;
+		plane_May.position.y = 4.5;
+		plane_May.position.z = 2.9 ;
+	    plane_May.rotation.x = (Math.PI / 40);
+	    plane_May.rotation.y = (-Math.PI-Math.PI/60);
+	    plane_May.visible=false;
+	    plane_May.userData.name="May"
+
+	    var materialImg_May = THREE.ImageUtils.loadTexture('../pois/maggio.png');
+		var img_May= new THREE.MeshBasicMaterial({ map: materialImg_May, transparent:true });
+
+    	poi_May = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_May);
+		poi_May.overdraw = true;
+		poi_May.position.x = -1.2;
+		poi_May.position.y = 3.8;
+		poi_May.position.z = 2.7;
+    	poi_May.visible=false;
+		poi_May.userData.name="May"
+		poi_May.material.opacity=poi_opacity;
+
+
+		// ----June----
+
+		plane_Jun= new THREE.Mesh(new THREE.PlaneGeometry(2, 3.2),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_Jun.position.x = -3.2;
+		plane_Jun.position.y = 4.5;
+		plane_Jun.position.z = 2.9;
+	    plane_Jun.rotation.x = (Math.PI / 60);
+	    plane_Jun.rotation.y = (-Math.PI-Math.PI/60);
+	    plane_Jun.visible=false;
+	    plane_Jun.userData.name="Jun"
+
+	    var materialImg_Jun = THREE.ImageUtils.loadTexture('../pois/giugno.png');
+		var img_Jun= new THREE.MeshBasicMaterial({ map: materialImg_Jun, transparent:true });
+
+    	poi_Jun = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_Jun);
+		poi_Jun.overdraw = true;
+		poi_Jun.position.x = -3.2;
+		poi_Jun.position.y = 3.8;
+		poi_Jun.position.z = 2.5;
+    	poi_Jun.visible=false;
+		poi_Jun.userData.name="Jun"
+		poi_Jun.material.opacity=poi_opacity;
+
+
+		// ----July----
+		// ----August----
+		// ----September----
+		// ----October----
+
+
+		// ----November----
+
+		plane_Nov = new THREE.Mesh(new THREE.PlaneGeometry(2, 3.2),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_Nov.position.x = 1;
+		plane_Nov.position.y = 4.6;
+		plane_Nov.position.z = -2.9 ;
+	    plane_Nov.rotation.x = (Math.PI / 60);
+	    plane_Nov.rotation.y = (-Math.PI/50); //2*Math.PI
+	    plane_Nov.visible=false;
+	    plane_Nov.userData.name="Nov"
+
+	    var materialImg_Nov = THREE.ImageUtils.loadTexture('../pois/novembre.png');
+		var img_Nov= new THREE.MeshBasicMaterial({ map: materialImg_Nov, transparent:true });
+
+	    poi_Nov = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_Nov);
+		poi_Nov.overdraw = true;
+		poi_Nov.position.x = 1;
+		poi_Nov.position.y = 3.8;
+		poi_Nov.position.z = -2.6 ;
+		poi_Nov.visible=false
+		poi_Nov.userData.name="Nov"
+		poi_Nov.material.opacity=poi_opacity;
+
+
+		// ----December----
+
+		plane_Dec = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 3.2),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_Dec.position.x = 3;
+		plane_Dec.position.y = 4.6;
+		plane_Dec.position.z = -2.8 ;
+	    plane_Dec.rotation.x = (Math.PI / 60);
+	    plane_Dec.rotation.y = (-Math.PI/50); //2*Math.PI
+	    plane_Dec.visible=false;
+	    plane_Dec.userData.name="Dec"
+
+	    var materialImg_Dec = THREE.ImageUtils.loadTexture('../pois/dicembre.png');
+		var img_Dec= new THREE.MeshBasicMaterial({ map: materialImg_Dec, transparent:true });
+
+	    poi_Dec = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_Dec);
+		poi_Dec .overdraw = true;
+		poi_Dec.position.x = 2.8;
+		poi_Dec.position.y = 3.8;
+		poi_Dec.position.z = -2.5 ;
+		poi_Dec.visible=false
+		poi_Dec.userData.name="Dec"
+		poi_Dec.material.opacity=poi_opacity;
+
+		//add meshes to containers (add childred to object3D parents)
+		hotspots.add(poi_Jan, poi_Feb, poi_Apr, poi_May, poi_Jun, poi_Nov, poi_Dec);
+		planes.add(plane_Jan,plane_Feb, plane_Apr, plane_May, plane_Jun,plane_Nov, plane_Dec)
+
+		// add objects to the viewer!
+    	viewer.scenePointCloud.add(hotspots);
+    	viewer.scenePointCloud.add(planes);
+
+
+    	//generate event listeners!
 		document.addEventListener('mousedown', onDocumentMouseDown, false);
 		document.addEventListener('mousemove', onMouseMove, false);
 
