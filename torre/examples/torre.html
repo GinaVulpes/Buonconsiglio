@@ -251,16 +251,102 @@
 
 
 		// ----July----
+		
+		plane_Jul= new THREE.Mesh(new THREE.PlaneGeometry(2.2, 3.5),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_Jul.position.x = -4.15;
+		plane_Jul.position.y = 4.8;
+		plane_Jul.position.z = 1.82;
+	    plane_Jul.rotation.x = (Math.PI/60);
+	    plane_Jul.rotation.y = (Math.PI/2);
+	    plane_Jul.visible=false;
+	    plane_Jul.userData.name="Jul"
+
+	    var materialImg_Jul = THREE.ImageUtils.loadTexture('../pois/luglio.png');
+		var img_Jul= new THREE.MeshBasicMaterial({ map: materialImg_Jul, transparent:true });
+
+    	poi_Jul = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_Jul);
+		poi_Jul.overdraw = true;
+		poi_Jul.position.x = -3.8;
+		poi_Jul.position.y = 4.0;
+		poi_Jul.position.z = 1.5;
+    	poi_Jul.visible=false;
+		poi_Jul.userData.name="Jul"
+		poi_Jul.material.opacity=poi_opacity;
+
 		// ----August----
+		plane_Aug = new THREE.Mesh(new THREE.PlaneGeometry(2.5, 3.5),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_Aug.position.x = -3.9;
+		plane_Aug.position.y = 4.8;
+		plane_Aug.position.z = -2.0 ;
+	    plane_Aug.rotation.x = (Math.PI/60);
+	    plane_Aug.rotation.y = (Math.PI/2); //2*Math.PI
+	    plane_Aug.visible=false;
+	    plane_Aug.userData.name="Aug"
+
+	    var materialImg_Aug = THREE.ImageUtils.loadTexture('../pois/agosto.png');
+		var img_Aug= new THREE.MeshBasicMaterial({ map: materialImg_Aug, transparent:true });
+
+	    poi_Aug = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_Aug);
+		poi_Aug .overdraw = true;
+		poi_Aug.position.x = -3.6;
+		poi_Aug.position.y = 4.0;
+		poi_Aug.position.z = -2.6 ;
+		poi_Aug.visible=false
+		poi_Aug.userData.name="Aug"
+		poi_Aug.material.opacity=poi_opacity;
+
+
 		// ----September----
+		plane_Sep = new THREE.Mesh(new THREE.PlaneGeometry(2, 3.2),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_Sep.position.x = -3;
+		plane_Sep.position.y = 4.7;
+		plane_Sep.position.z = -3.0 ;
+	    plane_Sep.rotation.x = (Math.PI / 60);
+	    plane_Sep.rotation.y = (-Math.PI/50); //2*Math.PI
+	    plane_Sep.visible=false;
+	    plane_Sep.userData.name="Sep"
+
+	    var materialImg_Sep = THREE.ImageUtils.loadTexture('../pois/settembre.png');
+		var img_Sep= new THREE.MeshBasicMaterial({ map: materialImg_Sep, transparent:true });
+
+	    poi_Sep = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_Sep);
+		poi_Sep .overdraw = true;
+		poi_Sep.position.x = -3;
+		poi_Sep.position.y = 3.8;
+		poi_Sep.position.z = -2.6 ;
+		poi_Sep.visible=false
+		poi_Sep.userData.name="Sep"
+		poi_Sep.material.opacity=poi_opacity;
+
+
 		// ----October----
+		plane_Oct = new THREE.Mesh(new THREE.PlaneGeometry(2, 3.2),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
+		plane_Oct.position.x = -1;
+		plane_Oct.position.y = 4.8;
+		plane_Oct.position.z = -3.0 ;
+	    plane_Oct.rotation.x = (Math.PI / 60);
+	    plane_Oct.rotation.y = (-Math.PI/50); //2*Math.PI
+	    plane_Oct.visible=false;
+	    plane_Oct.userData.name="Oct"
+
+	    var materialImg_Oct = THREE.ImageUtils.loadTexture('../pois/ottobre.png');
+		var img_Oct= new THREE.MeshBasicMaterial({ map: materialImg_Oct, transparent:true });
+
+	    poi_Oct = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 2),img_Oct);
+		poi_Oct .overdraw = true;
+		poi_Oct.position.x = -1;
+		poi_Oct.position.y = 3.8;
+		poi_Oct.position.z = -2.6 ;
+		poi_Oct.visible=false
+		poi_Oct.userData.name="Oct"
+		poi_Oct.material.opacity=poi_opacity;
 
 
 		// ----November----
 
 		plane_Nov = new THREE.Mesh(new THREE.PlaneGeometry(2, 3.2),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
 		plane_Nov.position.x = 1;
-		plane_Nov.position.y = 4.6;
+		plane_Nov.position.y = 4.8;
 		plane_Nov.position.z = -2.9 ;
 	    plane_Nov.rotation.x = (Math.PI / 60);
 	    plane_Nov.rotation.y = (-Math.PI/50); //2*Math.PI
@@ -284,7 +370,7 @@
 
 		plane_Dec = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 3.2),new THREE.MeshBasicMaterial({color: plane_colour, transparent: true, opacity: plane_opacity}));
 		plane_Dec.position.x = 3;
-		plane_Dec.position.y = 4.6;
+		plane_Dec.position.y = 4.8;
 		plane_Dec.position.z = -2.8 ;
 	    plane_Dec.rotation.x = (Math.PI / 60);
 	    plane_Dec.rotation.y = (-Math.PI/50); //2*Math.PI
@@ -304,8 +390,9 @@
 		poi_Dec.material.opacity=poi_opacity;
 
 		//add meshes to containers (add childred to object3D parents)
-		hotspots.add(poi_Jan, poi_Feb, poi_Apr, poi_May, poi_Jun, poi_Nov, poi_Dec);
-		planes.add(plane_Jan,plane_Feb, plane_Apr, plane_May, plane_Jun,plane_Nov, plane_Dec)
+		hotspots.add(poi_Jan, poi_Feb, poi_Apr, poi_May, poi_Jun, poi_Jul, poi_Aug, poi_Sep, poi_Oct, poi_Nov, poi_Dec);
+		planes.add(plane_Jan,plane_Feb, plane_Apr, plane_May, plane_Jun, plane_Jul, plane_Aug, plane_Sep, plane_Oct, plane_Nov, plane_Dec)
+
 
 		// add objects to the viewer!
     	viewer.scenePointCloud.add(hotspots);
